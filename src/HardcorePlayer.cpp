@@ -12,16 +12,13 @@ public:
     HardcorePlayer() : PlayerScript("HardcorePlayer") {}
 
     void OnLogin(Player *player) override {
-        ChatHandler(player->GetSession()).SendSysMessage("You are dead, get over it!");
         if (player->isDead()) {
-            player->GetSession()->PlayerLogout();
+            ChatHandler(player->GetSession()).SendSysMessage("You are dead, get over it! LuL");
         }
     }
 
-
     void OnPlayerReleasedGhost(Player *player) override {
-        player->KillPlayer();
-        player->GetSession()->PlayerLogout();
+        ChatHandler(player->GetSession()).SendSysMessage("You're journey is now over!!!");
     }
 };
 
