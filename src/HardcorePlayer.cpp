@@ -19,7 +19,7 @@ public:
 
     void OnPlayerReleasedGhost(Player *player) override {
         ChatHandler(player->GetSession()).SendSysMessage("You're journey is now over!!!");
-        Player::DeleteFromDB(player->GetGUID, player->GetSession()->GetAccountId(), true, true);
+        player->DeleteFromDB(player->GetGUID, player->GetSession()->GetAccountId(), true, true);
     }
 };
 
