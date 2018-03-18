@@ -13,6 +13,7 @@ public:
 
     void OnPlayerReleasedGhost(Player* player) override {
         player->KillPlayer();
+        ChatHandler(player->GetSession()).SendSysMessage("You are dead, get over it!");
     }
 };
 
