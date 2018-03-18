@@ -6,14 +6,22 @@
 #include "Player.h"
 #include "Configuration/Config.h"
 
-class HardcorePlayer : public PlayerScript{
+class HardcorePlayer : public PlayerScript {
 public:
 
-    HardcorePlayer() : PlayerScript("HardcorePlayer") { }
+    HardcorePlayer() : PlayerScript("HardcorePlayer") {}
 
-    void OnPlayerReleasedGhost(Player* player) override {
-        player->KillPlayer();
+    void OnLogin(Player *player) override {
         ChatHandler(player->GetSession()).SendSysMessage("You are dead, get over it!");
+        if (player->isDead()) {
+            player->GetSession()->PlayerLogout();
+        }
+    }
+
+
+    void OnPlayerReleasedGhost(Player *player) override {
+        player->KillPlayer();
+        player->GetSession()->PlayerLogout();
     }
 };
 
